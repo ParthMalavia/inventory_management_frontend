@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Update with your FastAPI backend URL
 // const API_BASE_URL = 'https://inventory-management-backend-1-61pk.onrender.com'; 
-const API_BASE_URL = 'https://localhost:8000'; 
+const API_BASE_URL = 'http://127.0.0.1:8000'; 
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -11,7 +11,7 @@ const api = axios.create({
 
 // Authentication APIs
 export const login = (username, password) =>
-  api.post('/auth/token', new URLSearchParams({ username, password, grant_type: 'password' }));
+  api.post('/auth/login', { username, password }); // , grant_type: 'password'
 export const logout = () => api.post('/auth/logout');
 export const getCurrentUser = () => api.get('/auth/me');
 
@@ -30,5 +30,11 @@ export const updateInventory = (partNumber, data) => api.put(`/inventory/${partN
 export const deleteInventory = (partNumber) => api.delete(`/inventory/${partNumber}`);
 export const updateInventoryQuantity = (partNumber, data) => api.patch(`/inventory/${partNumber}/quantity`, data);
 export const getLowStock = () => api.get('/inventory/low-stock/');
+
+// User APIs
+export const getAllUsers = () => api.get('/users/users');
+export const registerUser = (data) => api.post('/auth/register', data);
+export const updateUser = (userId, data) => api.put(`/users/users/${userId}`, data);
+export const deleteUser = (userId) => api.delete(`/users/users/${userId}`);
 
 export default api;

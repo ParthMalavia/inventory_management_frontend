@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext.jsx';
 
 const Navigation = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, handleLogout } = useContext(AuthContext);
 
   return (
     <nav className="bg-gray-800 p-4">
@@ -29,7 +29,7 @@ const Navigation = () => {
             <Link to="/customers" className="text-white hover:text-gray-300">
               Customers
             </Link>
-            <button onClick={logout} className="text-white hover:text-gray-300">
+            <button onClick={handleLogout} className="text-white hover:text-gray-300">
               Logout
             </button>
           </div>

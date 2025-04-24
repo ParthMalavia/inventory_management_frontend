@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Inventory from './components/Inventory';
 import Categories from './components/Categories';
 import ProtectedRoute from './components/ProtectedRoute';
+import UserManagement from './components/UserManagement.jsx';
 
 
 function App() {
@@ -37,6 +38,14 @@ function App() {
             }
           />
           <Route
+            path="/users"
+            element={
+              <ProtectedRoute>
+                <UserManagement />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/"
             element={
               <ProtectedRoute>
@@ -46,7 +55,6 @@ function App() {
           />
           <Route path="*" element={<Login />} />
         </Routes>
-
       </div>
     </AuthProvider>
   )

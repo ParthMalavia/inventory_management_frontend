@@ -8,19 +8,12 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (token) {
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      fetchUser();
-    } else {
-      setLoading(false);
-    }
-  }, [token]);
-
   const fetchUser = async () => {
     try {
+      // console.log(">> getCurrentUser")
       const response = await getCurrentUser();
       setUser(response.data);
+      // console.log(">> Fetched user:", response.data);
     } catch (error) {
       console.error('Error fetching user:', error);
       handleLogout();
@@ -31,7 +24,9 @@ export const AuthProvider = ({ children }) => {
   const handleLogin = async (username, password) => {
     try {
       const response = await login(username, password);
+      // console.log(">> call login api")
       const newToken = response.data.access_token;
+      // console.log(">> Set token")
       setToken(newToken);
       localStorage.setItem('token', newToken);
       await fetchUser();
@@ -54,8 +49,21 @@ export const AuthProvider = ({ children }) => {
     delete api.defaults.headers.common['Authorization'];
   };
 
+  useEffect(() => {
+    if (token) {
+      // console.log(">> Setting token in header")
+      api.defaults.headers['Authorization'] = `Bearer ${token}`;
+      // api.headers['Authorization'] = `Bearer ${token}`;
+      // api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      fetchUser();
+    } else {
+      // console.log(">> No token found")
+      setLoading(false);
+    }
+  }, [token, loading]);
+
   return (
-    <AuthContext.Provider value={{ user, token, loading, login: handleLogin, logout: handleLogout }}>
+    <AuthContext.Provider value={{ user, token, loading, handleLogin, handleLogout }}>
       {children}
     </AuthContext.Provider>
   );

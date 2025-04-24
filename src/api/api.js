@@ -37,4 +37,17 @@ export const registerUser = (data) => api.post('/auth/register', data);
 export const updateUser = (userId, data) => api.put(`/users/users/${userId}`, data);
 export const deleteUser = (userId) => api.delete(`/users/users/${userId}`);
 
+
+// Supplier APIs
+export const getSuppliers = () => api.get('/suppliers');
+export const createSupplier = (data) => api.post('/suppliers', data);
+export const updateSupplier = (supplierId, data) => api.put(`/suppliers/${supplierId}`, data);
+export const deleteSupplier = (supplierId) => api.delete(`/suppliers/${supplierId}`);
+
+// Customer APIs
+export const getCustomers = () => api.get('/customers');
+export const createCustomer = (data) => api.post('/customers', data);
+export const updateCustomer = (customerId, data) => api.put(`/customers/${customerId}`, data);
+export const deleteCustomer = (customerId) => api.delete(`/customers/${customerId}`);
+
 export default api;

@@ -223,7 +223,7 @@ const Inventory = () => {
                       value={quantityInputs[item.part_number] ?? item.quantity}
                       onChange={(e) => handleQuantityInputChange(item.part_number, e.target.value)}
                       placeholder={item.quantity.toString()}
-                      className="w-12 p-1 border rounded text-gray-800 placeholder-gray-600"
+                      className="w-16 p-1 border rounded text-gray-800 placeholder-gray-600"
                       min="0"
                     />
                     <button

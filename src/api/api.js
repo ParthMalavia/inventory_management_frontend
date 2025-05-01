@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Update with your FastAPI backend URL
 // const API_BASE_URL = 'https://inventory-management-backend-1-61pk.onrender.com'; 
-const API_BASE_URL = 'http://127.0.0.1:8000'; 
+const API_BASE_URL = 'http://127.0.0.1:8000';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -49,5 +49,11 @@ export const getCustomers = () => api.get('/customers');
 export const createCustomer = (data) => api.post('/customers', data);
 export const updateCustomer = (customerId, data) => api.put(`/customers/${customerId}`, data);
 export const deleteCustomer = (customerId) => api.delete(`/customers/${customerId}`);
+
+// Order APIs
+export const getOrders = () => api.get('/orders/');
+export const createOrder = (data) => api.post('/orders/', data);
+export const updateOrder = (orderId, data) => api.put(`/orders/${orderId}`, data);
+export const deleteOrder = (orderId) => api.delete(`/orders/${orderId}`);
 
 export default api;

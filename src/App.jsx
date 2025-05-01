@@ -12,6 +12,7 @@ import Suppliers from './components/Suppliers';
 import Customers from './components/Customers';
 import ProtectedRoute from './components/ProtectedRoute';
 import UserManagement from './components/UserManagement';
+import Orders from './components/Orders';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/users" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
           <Route path="/suppliers" element={<ProtectedRoute><Suppliers /></ProtectedRoute>} />
           <Route path="/customers" element={<ProtectedRoute><Customers /></ProtectedRoute>} />
+          <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
           <Route path="/" element={<ProtectedRoute><Inventory /></ProtectedRoute>} />
           <Route path="*" element={<Login />} />
         </Routes>
